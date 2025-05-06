@@ -1,5 +1,6 @@
 import funcionario_pacote.*;
 
+import java.util.Locale;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -61,5 +62,12 @@ public class Main {
                 filter(colaborador -> colaborador.getId() > 300000000).
                 sorted((c1, c2) -> c1.getNome().compareTo(c2.getNome())).
                 forEach(System.out::println);
+
+        double salarioGeral = colaboradores.
+                stream().
+                mapToDouble(Colaborador::getSalario).
+                sum();
+
+        System.out.println("Salário de todos os colaboradoes somados: R$ " + String.format(Locale.forLanguageTag("BR"), "%.2f", salarioGeral));
     }
 }
